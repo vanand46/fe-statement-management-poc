@@ -1,18 +1,27 @@
+import { title } from "../components/title";
 
-export const renderDetailPage = () => {
-    const rootDiv = document.getElementById("view");
+import { stateManager } from "../index";
 
-    const bodyContainer = document.createElement("div");
-    const pageTitle = document.createElement("h1");
-    pageTitle.innerHTML = "This is detail page";
-    bodyContainer.appendChild(pageTitle);
-    bodyContainer.style.cssText = `
-        display: flex;
-        justify-content: center;
-        height: 60vh;
-        align-items: center;
-    `;
-    rootDiv.appendChild(bodyContainer);
-    
+export const mountDetailPage = () => {
+  const rootDiv = document.getElementById("container");
+
+  const bodyContainer = document.createElement("div");
+  const pageTitle = title(
+    "Here you can just check the increased counter in the previous screen"
+  );
+
+  const counter = title(stateManager.getState().counter);
+  
+
+  bodyContainer.appendChild(pageTitle);
+  bodyContainer.appendChild(counter);
+  bodyContainer.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60vh;
+    align-items: center;
+`;
+
+  rootDiv.appendChild(bodyContainer);
 };
-

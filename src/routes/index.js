@@ -1,15 +1,20 @@
-import { renderHomePage } from "../pages/home";
-import { renderDetailPage } from "../pages/detail";
+import { mountHomePage } from "../pages/home";
+import { mountDetailPage } from "../pages/detail";
 
-export const navigate = async(route) => {
-  // POC
+export const ROUTES = {
+  "": mountHomePage,
+  home: mountHomePage,
+  detail: mountDetailPage,
+};
 
-  const rootDiv = document.getElementById("view");
+export const navigate = (destinationRoute) => {
+  const functionDestinationRoute = ROUTES[destinationRoute];
+
+  if (!functionDestinationRoute) {
+    console.error("destinationRoute not defined as possible route", ROUTES);
+  }
+
+  const rootDiv = document.getElementById("container");
   rootDiv.innerHTML = "";
-  if (route === "" || route === "home") {
-    await renderHomePage();
-  }
-  if (route === "details") {
-    renderDetailPage();
-  }
+  functionDestinationRoute();
 };

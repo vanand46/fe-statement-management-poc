@@ -1,8 +1,11 @@
-import { navigate } from "../routes";
-export const mountLink = (label, route) => {
+import { navigate } from "../routes/index";
+
+export const mountLink = (label, destinationRoute) => {
   const link = document.createElement("a");
-  link.href = "javascript:void(0)";
   link.innerHTML = label;
-  link.addEventListener("click", async() => await navigate(route));
+  link.href = "javascript:void(0)";
+
+  link.addEventListener("click", () => navigate(destinationRoute));
+
   return link;
 };

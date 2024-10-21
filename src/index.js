@@ -1,9 +1,11 @@
-import { mountHeader  } from "./components/header";
-import { navigate } from "./routes";
+import { navigate } from "./routes/index";
+import { mountHeader } from "./components/header.js";
+export { stateManager } from "./state-management"
+
+const headerDiv = document.getElementById("header");
 
 const header = mountHeader();
-const headerDiv = document.getElementById("header");
 
 headerDiv.appendChild(header);
 
-await navigate("");
+navigate("");

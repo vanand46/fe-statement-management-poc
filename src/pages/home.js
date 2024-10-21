@@ -1,22 +1,30 @@
+import { title } from "../components/title";
+import { button } from "../components/button";
 
-export const renderHomePage = async() => {
-    const apiReq = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+import { stateManager } from "../index";
 
-    const resp = await apiReq.json();
-    console.log(resp);
-    const rootDiv = document.getElementById("view");
+export const mountHomePage = () => {
+  const rootDiv = document.getElementById("container");
 
-    const bodyContainer = document.createElement("div");
-    const pageTitle = document.createElement("h1");
-    pageTitle.innerHTML = "This is home page";
-    bodyContainer.appendChild(pageTitle);
-    bodyContainer.style.cssText = `
-        display: flex;
-        justify-content: center;
-        height: 60vh;
-        align-items: center;
-    `;
-    rootDiv.appendChild(bodyContainer);
-    
+  const bodyContainer = document.createElement("div");
+  const pageTitle = title("Here you can increase the counter");
+  const counterLabel = title(stateManager.getState().counter);
+  const increaseCounterBtn = button("Increase", () => {
+    stateManager.updateState({ counter: stateManager.getState().counter + 1 });
+    counterLabel.innerHTML = stateManager.getState().counter;
+  });
+
+  bodyContainer.appendChild(pageTitle);
+  bodyContainer.appendChild(counterLabel);
+  bodyContainer.appendChild(increaseCounterBtn);
+
+  bodyContainer.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60vh;
+    align-items: center;
+`;
+
+  rootDiv.appendChild(bodyContainer);
 };
-
