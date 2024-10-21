@@ -1,5 +1,9 @@
 
-export const renderHomePage = () => {
+export const renderHomePage = async() => {
+    const apiReq = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+
+    const resp = await apiReq.json();
+    console.log(resp);
     const rootDiv = document.getElementById("view");
 
     const bodyContainer = document.createElement("div");

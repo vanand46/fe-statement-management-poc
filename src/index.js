@@ -6,4 +6,4 @@ const headerDiv = document.getElementById("header");
 
 headerDiv.appendChild(header);
 
-navigate("");
+await navigate("");

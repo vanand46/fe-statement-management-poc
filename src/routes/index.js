@@ -1,13 +1,13 @@
 import { renderHomePage } from "../pages/home";
 import { renderDetailPage } from "../pages/detail";
 
-export const navigate = (route) => {
+export const navigate = async(route) => {
   // POC
 
   const rootDiv = document.getElementById("view");
   rootDiv.innerHTML = "";
   if (route === "" || route === "home") {
-    renderHomePage();
+    await renderHomePage();
   }
   if (route === "details") {
     renderDetailPage();
